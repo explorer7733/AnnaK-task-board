@@ -24,44 +24,41 @@
     <div class="text-center mb-5">
       <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#formModal">Add Task</button>
     </div>
+    
     <!--I used the the component "modal" from the getbootstrap.com to create class="modal" to add tasks-->
-
-    <div class="modal" tabindex="-1">
-      <!--"modal-conrent" includes "modal-header", "modal-body" and "modal-footer"-->
+    <div class="modal" tabindex="-1"> <!--check if need class="container-fluid"-->
+      <!--"modal-content" includes "modal-header", "modal-body" and "modal-footer"-->
       <div class="modal-content">
-        <!--modal's header includes title and close button-->
+        <!--"modal-header" includes title and close button-->
         <div class="modal-header">
-          <h5 class="modal-title">Add Task</h5>
+          <h2 class="modal-title">Add Task</h2> <!--see at getboostrap if it should be h5-->
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         
-        
+        <!--"modal-body" includes "form" with inputs-->
         <div class="modal-body">
-
-            <form>
-              <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-              </div>
-              <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
-              </div>
-              <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-          </div>
+          <!--<form> includes Task Title, Task Due Date and Task Description-->
+          <form id="task-card">
+            <div class="mb-3">
+              <label for="taskTitle" class="form-label">Task Title</label>
+              <input type="text" class="form-control" id="task-title-input" aria-label="Task Title">
+            </div>
 
 
-          <!--It's the footer with "Add Task" button in the class="modal-task"-->
+            <div class="mb-3">
+              <label for="taskDescription" class="form-label">Task Description</label>
+              <input type="text" class="form-control" id="task-decription-input" aria-label="Task Description">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Submit</button><!--check if it should be deleted because we have button in the footer-->
+          </form>
+        </div>
+
+
+          <!--"modal-footer" includes "Add Task" button-->
           <div class="modal-footer">
             <button type="button" class="btn btn-primary">Add Task</button> <!--add js function for localStorage at js file-->
           </div>
-        </div>
       </div>
     </div>
 
