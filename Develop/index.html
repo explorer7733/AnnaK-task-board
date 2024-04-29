@@ -25,19 +25,20 @@
       <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#formModal">Add Task</button>
     </div>
     
-    <!--I used the the component "modal" from the getbootstrap.com to create class="modal" to add tasks-->
-    <div class="modal" tabindex="-1"> 
-      <!--"modal-content" includes "modal-header", "modal-body" and "modal-footer"-->
+    <!--I used the component "modal" from the getbootstrap.com to create class="modal" to add tasks-->
+      <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+      <!--"modal-content" includes "modal-header" and "modal-body"-->
       <div class="modal-content">
+
         <!--"modal-header" includes title and close button-->
         <div class="modal-header">
-          <h2 class="modal-title">Add Task</h2> <!--see at getboostrap if it should be h5-->
+          <h2 class="modal-title">Add Task</h2> 
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         
-        <!--"modal-body" includes "form" with three inputs-->
+        <!--"modal-body" includes "form" with three inputs and "modal-footer"-->
         <div class="modal-body">
-          <!--<form> includes Task Title, Task Due Date and Task Description-->
           <form id="task-card">
             <!--Task Title-->
             <div class="mb-3">
@@ -56,15 +57,15 @@
               <label for="taskDescription" class="form-label">Task Description</label>
               <input autocomplete="off" type="text" class="form-control" id="task-description-input" aria-label="Task Description">
             </div>
+            <!--"modal-footer" includes "Add Task" button-->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formModal">Add Task</button>
+            </div>
           </form>
-        </div>
-
-        <!--"modal-footer" includes "Add Task" button-->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Add Task</button> 
         </div>
       </div>
     </div>
+  </div>
 
 
     <div class="row swim-lanes text-center justify-content-between">

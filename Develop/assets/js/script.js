@@ -1,5 +1,4 @@
 // Retrieve tasks and nextId from localStorage
-
 $(document).ready(function () {
 
 let taskList = JSON.parse(localStorage.getItem("tasks")) || [];
@@ -9,12 +8,11 @@ let nextId = JSON.parse(localStorage.getItem("nextId")) || 1;
     function generateTaskId() {
     return 'task_' + (nextId++);
     }
-});
 
 // Todo: create a function to create a task card
 function createTaskCard(task) {
     const taskCard = $('<div>')
-        .addClass('card task-card draggable my-3')
+        .addClass('card w-75 task-card draggable my-3')
         .attr('data-task-id', task.id);
     const cardHeader = $('<div>')
         .addClass('card-header h3')
@@ -52,8 +50,7 @@ function createTaskCard(task) {
     cardBody.append(cardDueDate, cardDescription, cardDeleteButton);
     taskCard.append(cardHeader, cardBody);
 
-    return taskCard;
-    
+    return taskCard; 
 }
 
 // Todo: create a function to render the task list and make cards draggable
@@ -82,13 +79,13 @@ function renderTaskList() {
     $('.draggable').draggable({
         opacity: 0.7,
         zIndex: 100,
-        helper: funcation (e), {
-            const :original = $(e.target).hasClass('ui-draggable')
+        helper: function (e) {
+            const original = $(e.target).hasClass('ui-draggable')
                 ? $(e.target)
-                : $(e.target).closest('.ui-draggable'),
-            return :original.clone().css({
+                : $(e.target).closest('.ui-draggable')
+            return original.clone().css({
                 width: original.outerWidth(),
-            }),   
+            })   
         },
     });
 }
@@ -97,11 +94,12 @@ function renderTaskList() {
 function handleAddTask(event){
     event.preventDefault();
 
-    const taskTitle = taskTitleInputEl.val().trim();
-    const taskDate = taskDateInputEl.val();
-    const taskDescription = taskDescriptionInputEl.val();
+    const taskTitle = $('#task-title-input').val().trim();
+    const taskDate = $('#task-due-date-input').val();
+    const taskDescription = $('#task-description-input').val();
 
     const newTask = {
+        id: generateTaskId(),
         title: taskTitle,
         dueDate: taskDate,
         description: taskDescription,
@@ -112,9 +110,9 @@ function handleAddTask(event){
     localStorage.setItem('tasks', JSON.stringify(taskList));
 
     //Clear the form inputs
-    taskTitleInputEl.val('');
-    taskDateInputEl.val('');
-    taskDescriptionInputEl.val('');
+    $('#task-title-input').val('');
+    $('#task-due-date-input').val('');
+    $('#task-description-input').val('');
 
     renderTaskList();
 }
@@ -169,4 +167,4 @@ $(document).ready(function () {
 
 });
 
-
+});
