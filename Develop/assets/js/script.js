@@ -4,7 +4,8 @@ let nextId = JSON.parse(localStorage.getItem("nextId"));
 
 // Todo: create a function to generate a unique task id
 function generateTaskId() {
-    return 'task-' + Date.now(); //need to check!!!!
+    return 'task' + Date.now(); //!!!!!!!need to check!!!!
+    //!!!!!!!return new Date().getTime();
 }
 
 // Todo: create a function to create a task card
@@ -54,7 +55,38 @@ function createTaskCard(task) {
 
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
+    //!!!!!!!const tasks = readTasksFromStorage(); //see lines 17-25 JS
+    const toDoList = $('#todo-cards');
+    toDoList.empty();
 
+    const inProgressList = $('#in-progress-cards')
+    inProgressList.empty();
+
+    const doneList = $('#done-cards');
+    doneList.empty();
+
+    for (let task of taskList) {
+        if (task.status === 'to-do') {
+            toDoList.append(createTaskCard(task));
+        } else if (task.status === 'in-progress') {
+            inProgressList.append(createTaskCard(task));
+        } else if (task.status === 'done') {
+            doneList.append(createTaskCard(task))
+        }
+    }
+        //To make cards draggable - use jQuery UI Interaction Draggable
+    $('.draggable').draggable({
+        opacity: 0.7,
+        zIndex: 100,
+        helper: funcation (e) {
+            const original = $(e.target).hasClass('ui-draggable')
+                ? $(e.target)
+                : $(e.target).closest('.ui-draggable');
+            return original.clone().css({
+                width: original.outerWidth(),
+            });   
+        },
+    });
 }
 
 // Todo: create a function to handle adding a new task
