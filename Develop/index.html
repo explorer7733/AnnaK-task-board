@@ -26,7 +26,7 @@
     </div>
     
     <!--I used the the component "modal" from the getbootstrap.com to create class="modal" to add tasks-->
-    <div class="modal" tabindex="-1"> <!--check if need class="container-fluid"-->
+    <div class="modal" tabindex="-1"> 
       <!--"modal-content" includes "modal-header", "modal-body" and "modal-footer"-->
       <div class="modal-content">
         <!--"modal-header" includes title and close button-->
@@ -48,25 +48,21 @@
             <!--Task Due Date-->
             <div class="mb-3">
               <label for="taskDueDate" class="form-label">Task Due Date</label>
-              <input type="text" class="form-control" id="task-decription-input" aria-label="Task Description">
+              <input type="text" class="form-control" id="task-due-date-input" aria-label="Task Due Date">
             </div>
 
             <!--Task Description-->
             <div class="mb-3">
               <label for="taskDescription" class="form-label">Task Description</label>
-              <input autocomplete="off" type="text" class="form-control" id="task-due-date" aria-label="Task Due Date">
+              <input autocomplete="off" type="text" class="form-control" id="task-description" aria-label="Task Description">
             </div>
-            
-            <!--<button type="submit" class="btn btn-primary">Submit</button> 
-              check if it should be deleted because we have button in the footer-->
           </form>
         </div>
 
-
-          <!--"modal-footer" includes "Add Task" button-->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Add Task</button> <!--add js function for localStorage at js file-->
-          </div>
+        <!--"modal-footer" includes "Add Task" button-->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Add Task</button> 
+        </div>
       </div>
     </div>
 

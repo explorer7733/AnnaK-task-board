@@ -74,15 +74,16 @@ function renderTaskList() {
             doneList.append(createTaskCard(task))
         }
     }
-        //To make cards draggable - use jQuery UI Interaction Draggable
+    
+    //To make cards draggable - use jQuery UI Interaction Draggable
     $('.draggable').draggable({
         opacity: 0.7,
         zIndex: 100,
         helper: funcation (e) {
-            const original = $(e.target).hasClass('ui-draggable')
+            const :original = $(e.target).hasClass('ui-draggable')
                 ? $(e.target)
                 : $(e.target).closest('.ui-draggable');
-            return original.clone().css({
+            return :original.clone().css({
                 width: original.outerWidth(),
             });   
         },
@@ -91,7 +92,28 @@ function renderTaskList() {
 
 // Todo: create a function to handle adding a new task
 function handleAddTask(event){
+    event.preventDefault();
 
+    const taskTitle = taskTitleInputEl.val().trim();
+    const taskDate = taskDateInputEl.val();
+    const taskDescription = taskDescriptionInputEl.val();
+
+    const newTask = {
+        title: taskTitle,
+        dueDate: taskDate,
+        description: taskDescription,
+        status: 'to-do',
+    };
+
+    taskList.push(newTask);
+    localStorage.setItem('tasks', JSON.stringify(taskList));
+
+    //Clear the form inputs
+    taskTitleInputEl.val('');
+    taskDateInputEl.val('');
+    taskDescriptionInputEl.val('');
+
+    renderTaskList();
 }
 
 // Todo: create a function to handle deleting a task
