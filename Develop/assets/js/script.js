@@ -1,12 +1,15 @@
 // Retrieve tasks and nextId from localStorage
-let taskList = JSON.parse(localStorage.getItem("tasks"));
-let nextId = JSON.parse(localStorage.getItem("nextId"));
+
+$(document).ready(function () {
+
+let taskList = JSON.parse(localStorage.getItem("tasks")) || [];
+let nextId = JSON.parse(localStorage.getItem("nextId")) || 1;
 
 // Todo: create a function to generate a unique task id
-function generateTaskId() {
-    return 'task' + Date.now(); //!!!!!!!need to check!!!!
-    //!!!!!!!return new Date().getTime();
-}
+    function generateTaskId() {
+    return 'task_' + (nextId++);
+    }
+});
 
 // Todo: create a function to create a task card
 function createTaskCard(task) {
@@ -55,7 +58,7 @@ function createTaskCard(task) {
 
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
-    //!!!!!!!const tasks = readTasksFromStorage(); //see lines 17-25 JS
+
     const toDoList = $('#todo-cards');
     toDoList.empty();
 
@@ -79,13 +82,13 @@ function renderTaskList() {
     $('.draggable').draggable({
         opacity: 0.7,
         zIndex: 100,
-        helper: funcation (e) {
+        helper: funcation (e), {
             const :original = $(e.target).hasClass('ui-draggable')
                 ? $(e.target)
-                : $(e.target).closest('.ui-draggable');
+                : $(e.target).closest('.ui-draggable'),
             return :original.clone().css({
                 width: original.outerWidth(),
-            });   
+            }),   
         },
     });
 }
@@ -119,6 +122,7 @@ function handleAddTask(event){
 // Todo: create a function to handle deleting a task
 function handleDeleteTask(event) {
     event.preventDefault();
+    
     const taskId = $(this).attr('data-task-id');
     
     taskList = taskList.filter(task => task.id !== taskId);
@@ -145,5 +149,24 @@ function handleDrop(event, ui) {
 
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
+    //render the task list
+    renderTaskList();
+
+    //add event listeners
+    $('#task-card').on('submit', handleAddTask);
+    $('.modal-footer').on('click', '.btn-danger', handleDeleteTask);
+
+    //make lines droppable
+    $('.lane').droppable({
+        accept: '.draggable',
+        drop: handleDrop
+    });
+
+    //due date input - date picker
+    $('#task-due-date-input').datepicker({
+        altFormat: "DD/MM/YYYY"
+    });
 
 });
+
+
