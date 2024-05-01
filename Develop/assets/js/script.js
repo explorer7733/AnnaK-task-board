@@ -7,41 +7,12 @@ function getTasksFromLocalStorage() {
     return tasks;
 }
 
-/***************************** 
- *Add a function to retrieve tasks from localStorage:
- 
- function getTasksFromLocalStorage() {
-    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    return tasks;
-}
-
-
- * Call this function to get tasks when the page loads and display them on the Task Board:
- 
- window.addEventListener('load', () => {
-    const tasks = getTasksFromLocalStorage();
-    tasks.forEach(task => {
-        // Create task card dynamically and append it to the Task Board
-    });
-});
- 
- 
-Update your code to save tasks to localStorage when a new task is added:
-
-function saveTaskToLocalStorage(task) {
-    const tasks = getTasksFromLocalStorage();
-    tasks.push(task);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-}
- * **************************************/ 
-
-
-// Todo: create a function to generate a unique task id
+// Create a function to generate a unique task id
     function generateTaskId() {
     return 'task_' + (nextId++);
     }
 
-// Todo: create a function to create a task card
+// Create a function to create a task card
 function createTaskCard(task) {
     const taskCard = $('<div>')
         .addClass('card w-75 task-card draggable my-3')
@@ -52,7 +23,7 @@ function createTaskCard(task) {
     const cardBody = $('<div>').addClass('card-body');
     const cardDueDate = $('<div>')
         .addClass('card-text')
-        .text(task.DueDate);
+        .text(task.dueDate);
     const cardDescription = $('<div>')
         .addClass('card-text')
         .text(task.description);
@@ -66,7 +37,7 @@ function createTaskCard(task) {
     cardDeleteButton.on('click', handleDeleteTask);
    
     //Create function to check the status of task and style the background color per provided criteria
-    if (task.DueDate && task.status !== 'done') {
+    if (task.dueDate && task.status !== 'done') {
         const now = dayjs();
         const taskDueDate = dayjs(task.dueDate, "DD/MM/YYYY");
 
@@ -85,7 +56,7 @@ function createTaskCard(task) {
     return taskCard; 
 }
 
-// Todo: create a function to render the task list and make cards draggable
+// Create a function to render the task list and make cards draggable
 function renderTaskList() {
 
     const toDoList = $('#todo-cards');
@@ -122,7 +93,7 @@ function renderTaskList() {
     });
 }
 
-// Todo: create a function to handle adding a new task
+// Create a function to handle adding a new task
 function handleAddTask(event){
     event.preventDefault();
 
@@ -149,7 +120,7 @@ function handleAddTask(event){
     renderTaskList();
 }
 
-// Todo: create a function to handle deleting a task
+// Create a function to handle deleting a task
 function handleDeleteTask(event) {
     event.preventDefault();
     
@@ -162,14 +133,16 @@ function handleDeleteTask(event) {
     renderTaskList();
 }
 
-// Todo: create a function to handle dropping a task into a new status lane
+// Create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {
     
-    const taskId = ui.draggable[0].dataset.taskId;
-    
-    for (let task of tasks) {
+    const taskId = ui.draggable.attr('data-task-id');
+    const newStatus = $(this).attr('id');
+
+    for (let task of taskList) {
         if (task.id === taskId) {
             task.status = newStatus;
+            break;
         }
     }
     localStorage.setItem('tasks', JSON.stringify(taskList));
@@ -177,7 +150,7 @@ function handleDrop(event, ui) {
     renderTaskList();
 }
 
-// Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
+// When the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
     //render the task list
     renderTaskList();
@@ -186,7 +159,7 @@ $(document).ready(function () {
     $('#task-form').on('submit', handleAddTask);
     $('.modal-footer').on('click', '.btn-danger', handleDeleteTask);
 
-    //make lines droppable FIX THIS!!!!
+    //make lines droppable 
     $('.lane').droppable({
         accept: '.draggable',
         drop: handleDrop

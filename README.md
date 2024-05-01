@@ -2,14 +2,14 @@
 
 ## Description
 
-* My motivation was to create a task board application by using a thrid-party APIs (jQueri, Bootstrap, Day.js) and continue to practice the skills (addEventListener, localStorage, JSON.parse and JSON.stringify). 
+* My motivation was to create a Task Board application by using a thrid-party APIs (jQueri, Bootstrap, Day.js) and continue to practice the skills (addEventListener, localStorage, JSON.parse and JSON.stringify). 
 
 * I modified the starter code according with the provided criteria.
 
 * I learned the following:
 
 1. How to create a tasks with the Bootstrap's component Modal and Bootstrap's Forms.
-2. How to add a functionality using the jQuery, create element, append the created elements.
+2. How to add a functionality using the jQuery (create elements, append the created elements, use val method).
 3. How to make cards draggable using jQuery Interactions Draggable and Droppable.
 4. How to add dates using jQuery Widget Datepicker and Day.js.
 
@@ -27,8 +27,8 @@ To review "AnnaK-task-board", you can click on the deployed link and the screens
 
 ## Screenshots
 
-![task card]()
-![task board with cards]()
+![task card](./Develop/screenshots/task%20card.png)
+![task board with cards](./Develop/screenshots/task%20board%20with%20cards.png)
 
 ## Credits
 
