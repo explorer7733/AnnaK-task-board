@@ -186,7 +186,7 @@ $(document).ready(function () {
     $('#task-form').on('submit', handleAddTask);
     $('.modal-footer').on('click', '.btn-danger', handleDeleteTask);
 
-    //make lines droppable FIX THIS 
+    //make lines droppable FIX THIS!!!!
     $('.lane').droppable({
         accept: '.draggable',
         drop: handleDrop
