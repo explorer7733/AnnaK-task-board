@@ -1,8 +1,40 @@
 // Retrieve tasks and nextId from localStorage
-$(document).ready(function () {
-
 let taskList = JSON.parse(localStorage.getItem("tasks")) || [];
-let nextId = JSON.parse(localStorage.getItem("nextId")) || 1;
+let nextId = JSON.parse(localStorage.getItem("nextId"));
+
+function getTasksFromLocalStorage() {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    return tasks;
+}
+
+/***************************** 
+ *Add a function to retrieve tasks from localStorage:
+ 
+ function getTasksFromLocalStorage() {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    return tasks;
+}
+
+
+ * Call this function to get tasks when the page loads and display them on the Task Board:
+ 
+ window.addEventListener('load', () => {
+    const tasks = getTasksFromLocalStorage();
+    tasks.forEach(task => {
+        // Create task card dynamically and append it to the Task Board
+    });
+});
+ 
+ 
+Update your code to save tasks to localStorage when a new task is added:
+
+function saveTaskToLocalStorage(task) {
+    const tasks = getTasksFromLocalStorage();
+    tasks.push(task);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+ * **************************************/ 
+
 
 // Todo: create a function to generate a unique task id
     function generateTaskId() {
@@ -105,7 +137,7 @@ function handleAddTask(event){
         description: taskDescription,
         status: 'to-do',
     };
-
+    console.log(newTask);
     taskList.push(newTask);
     localStorage.setItem('tasks', JSON.stringify(taskList));
 
@@ -151,10 +183,10 @@ $(document).ready(function () {
     renderTaskList();
 
     //add event listeners
-    $('#task-card').on('submit', handleAddTask);
+    $('#task-form').on('submit', handleAddTask);
     $('.modal-footer').on('click', '.btn-danger', handleDeleteTask);
 
-    //make lines droppable
+    //make lines droppable FIX THIS 
     $('.lane').droppable({
         accept: '.draggable',
         drop: handleDrop
@@ -167,4 +199,4 @@ $(document).ready(function () {
 
 });
 
-});
+
