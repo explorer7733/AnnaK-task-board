@@ -23,7 +23,7 @@ To review "AnnaK-task-board", you can click on the deployed link and the screens
 
 ## Deployed link
 
-[deployed link]()
+[deployed link](https://explorer7733.github.io/AnnaK-task-board/)
 
 ## Screenshots
 
