@@ -27,8 +27,8 @@ To review "AnnaK-task-board", you can click on the deployed link and the screens
 
 ## Screenshots
 
-![task card](./Develop/screenshots/task%20card.png)
-![task board with cards](./Develop/screenshots/task%20board%20with%20cards.png)
+![task card](./screenshots/task%20card.png)
+![task board with cards](./screenshots/task%20board%20with%20cards.png)
 
 ## Credits
 
